@@ -1,11 +1,4 @@
-/*
-Kod bazowy programu Commit4_0: 
-• Program dodaje do prostej bazy danych (pliku db.txt) dane odnośnie Studentów.
-• Studenci dodawani są w klasie Main.
-• Wszyscy studenci są wypisywani na końcu klasy Main.
-• Klasa Service obsługuje odczyt i zapis do pliku bazy danych.
-• Klasa Student reprezentuje pojedynczego studenta (Imię, Wiek).
-*/
+
 import java.util.Scanner; 
 import java.io.IOException;
 
@@ -13,22 +6,41 @@ class Main {
   public static void main(String[] args) {
     try {
       Service s = new Service();
+      Scanner scanner = new Scanner(System.in);
       
-      Scanner myObj = new Scanner(System.in);
-      System.out.println("Podaj imie:");
-      String imie = myObj.nextLine();
-      System.out.println("Podaj wiek:");
-      int wiek = myObj.nextInt();
-
-      s.addStudent(new Student(imie, wiek));
-      
-
-      var students = s.getStudents();
-      for(Student current : students) {
-        System.out.println(current.ToString());
+      while(true) {
+        System.out.println("1. Dodaj studenta");
+        System.out.println("2. Wyświetl studentów");
+        System.out.println("0. Wyjście");
+        System.out.print("Wybierz opcję: ");
+        
+        int choice = scanner.nextInt();
+        scanner.nextLine(); // consume newline
+        
+        if(choice == 0) break;
+        
+        switch(choice) {
+          case 1:
+            System.out.println("Podaj imie:");
+            String imie = scanner.nextLine();
+            System.out.println("Podaj wiek:");
+            int wiek = scanner.nextInt();
+            s.addStudent(new Student(imie, wiek));
+            break;
+            
+          case 2:
+            var students = s.getStudents();
+            for(Student current : students) {
+              System.out.println(current.ToString());
+            }
+            break;
+            
+          default:
+            System.out.println("Nieprawidłowa opcja");
+        }
       }
     } catch (IOException e) {
-
+      System.out.println("Błąd: " + e.getMessage());
     }
   }
 }
