@@ -11,7 +11,7 @@ class Main {
       while(true) {
         System.out.println("1. Dodaj studenta");
         System.out.println("2. Wyświetl studentów");
-        System.out.println("0. Wyjście");
+        System.out.println("3. Wyjście");
         System.out.print("Wybierz opcję: ");
         
         int choice = scanner.nextInt();
