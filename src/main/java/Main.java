@@ -14,6 +14,14 @@ class Main {
     try {
       Service s = new Service();
       
+      Scanner myObj = new Scanner(System.in);
+      System.out.println("Podaj imie:");
+      String imie = myObj.nextLine();
+      System.out.println("Podaj wiek:");
+      int wiek = myObj.nextInt();
+
+      s.addStudent(new Student(imie, wiek));
+      
 
       var students = s.getStudents();
       for(Student current : students) {
