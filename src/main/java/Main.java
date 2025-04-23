@@ -17,7 +17,7 @@ class Main {
         int choice = scanner.nextInt();
         scanner.nextLine(); // consume newline
         
-        if(choice == 0) break;
+        if(choice == 3) break;
         
         switch(choice) {
           case 1:
