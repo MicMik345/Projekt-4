@@ -1,3 +1,4 @@
+
 import java.util.Collection;
 import java.util.ArrayList;
 import java.io.BufferedReader;
@@ -10,7 +11,7 @@ public class Service {
   public void addStudent(Student student) throws IOException {
     var f = new FileWriter("db.txt", true);
     var b = new BufferedWriter(f);
-    b.append(student.ToString());
+    b.append(student.toString());
     b.newLine();
     b.close();
   }
@@ -24,7 +25,7 @@ public class Service {
       line = reader.readLine();
       if(line == null)
         break;
-      ret.add(Student.Parse(line));
+      ret.add(Student.parse(line));
     }
     reader.close();
     return ret;

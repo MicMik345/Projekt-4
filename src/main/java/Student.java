@@ -1,24 +1,58 @@
-public class Student {
+import java.io.IOException;
+import java.util.Scanner;
 
-  private String Name;
-  private int Age;
+class Main {
+  public static void main(String[] args) {
+    try {
+      Service s = new Service();
+      Scanner scanner = new Scanner(System.in);
 
-  public Student(String name, int age) {
-    Name = name;
-    Age = age;
-  }
+      boolean tak = true;
+      while(tak){
+        System.out.println("\nWybierz opcję:");
+        System.out.println("1 - Dodaj studenta");
+        System.out.println("2 - Wyświetl wszystkich studentów");
+        System.out.print("Twój wybór: ");
+        int choice = Integer.parseInt(scanner.nextLine());
 
-  public String GetName() {return Name;}
-  public int GetAge() {return Age;}
+        switch (choice) {
+          case 1:
+            System.out.print("Podaj imię studenta: ");
+            String name = scanner.nextLine();
 
-  public String ToString() {
-    return Name + " " + Integer.toString(Age);
-  }
+            System.out.print("Podaj nazwisko studenta: ");
+            String lastname = scanner.nextLine();
 
-  public static Student Parse(String str) {
-    String[] data = str.split(" ");
-    if(data.length != 2) 
-      return new Student("Parse Error", -1);
-    return new Student(data[0], Integer.parseInt(data[1]));
+            int age = 0;
+            boolean validAge = false;
+            while (!validAge) {
+              System.out.print("Podaj wiek studenta: ");
+              try {
+                age = Integer.parseInt(scanner.nextLine());
+                validAge = true;
+              } catch (NumberFormatException e) {
+                System.out.println("Wiek musi być liczbą. Spróbuj ponownie.");
+              }
+            }
+
+            s.addStudent(new Student(name, lastname, age));
+            System.out.println(" Dodano studenta.");
+            break;
+
+          case 2:
+            var students = s.getStudents();
+            System.out.println("Lista studentów:");
+            for (Student current : students) {
+              System.out.println(current.toString());
+            }
+            break;
+        }
+      }
+      scanner.close();
+
+
+    } catch (IOException e) {
+
+    }
   }
 }
