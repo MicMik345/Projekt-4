@@ -22,7 +22,7 @@ public class Student {
   }
 
   public static boolean isValidDate(String date) {
-    String[] parts = date.split("-");
+    String[] parts = date.split("_");
     if (parts.length != 3) return false;  
     
     try {
