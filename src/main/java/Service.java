@@ -39,4 +39,24 @@ public Student findStudentByName(String name) throws IOException {
     }
     return null; 
 }
+
+public void deleteStudent(String name, String lastName) throws IOException {
+    Collection<Student> students = getStudents();
+    BufferedWriter writer = new BufferedWriter(new FileWriter("db.txt"));
+    boolean found = false;
+    
+    for (Student student : students) {
+        if (!(student.getName().equalsIgnoreCase(name) && 
+              student.getLastName().equalsIgnoreCase(lastName))) {
+            writer.write(student.toString());
+            writer.newLine();
+        } else {
+            found = true;
+        }
+    }
+    writer.close();
+    if (!found) {
+        throw new IOException("Nie znaleziono studenta");
+    }
+}
 }
