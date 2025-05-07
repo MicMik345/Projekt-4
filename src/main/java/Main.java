@@ -13,6 +13,7 @@ class Main {
         System.out.println("\nWybierz opcję:");
         System.out.println("1 - Dodaj studenta");
         System.out.println("2 - Wyświetl wszystkich studentów");
+        System.out.println("3 - Wyszukaj studenta po imieniu");
         System.out.print("Twój wybór: ");
         int choice = Integer.parseInt(scanner.nextLine());
 
@@ -56,6 +57,17 @@ class Main {
             System.out.println("Lista studentów:");
             for (Student current : students) {
               System.out.println(current.toString());
+            }
+            break;
+          case 3:
+            System.out.print("Podaj imię studenta do wyszukania: ");
+            String searchName = scanner.nextLine();
+            Student foundStudent = s.findStudentByName(searchName);
+            if (foundStudent != null) {
+              System.out.println("Znaleziono studenta:");
+              System.out.println(foundStudent);
+            } else {
+              System.out.println("Nie znaleziono studenta o imieniu: " + searchName);
             }
             break;
         }
