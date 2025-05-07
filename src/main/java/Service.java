@@ -31,13 +31,12 @@ public class Service {
   }
   
 
-public Collection<Student> findStudentByName(String name) throws IOException {
-    Collection<Student> foundStudents = new ArrayList<>();
+public Student findStudentByName(String name) throws IOException {
     for (Student student : getStudents()) {
         if (student.getName().equalsIgnoreCase(name)) {
-            foundStudents.add(student);
+            return student;
         }
     }
-    return foundStudents;
+    return null; 
 }
 }

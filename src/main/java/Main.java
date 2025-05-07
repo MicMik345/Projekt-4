@@ -62,12 +62,10 @@ class Main {
           case 3:
             System.out.print("Podaj imię studenta do wyszukania: ");
             String searchName = scanner.nextLine();
-            Collection<Student> foundStudents = s.findStudentByName(searchName);
-            if (!foundStudents.isEmpty()) {
-              System.out.println("Znaleziono studentów:");
-              for (Student student : foundStudents) {
-                System.out.println(student);
-              }
+            Student foundStudent = s.findStudentByName(searchName);
+            if (foundStudent != null) {
+              System.out.println("Znaleziono studenta:");
+              System.out.println(foundStudent);
             } else {
               System.out.println("Nie znaleziono studenta o imieniu: " + searchName);
             }
