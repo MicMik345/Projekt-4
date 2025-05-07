@@ -1,58 +1,27 @@
-import java.io.IOException;
-import java.util.Scanner;
+public class Student {
+  private String name;
+  private int age;
+  private String lastName;
 
-class Main {
-  public static void main(String[] args) {
-    try {
-      Service s = new Service();
-      Scanner scanner = new Scanner(System.in);
+  public Student(String name, String lastName, int age){
+    this.name = name;
+    this.age = age;
+    this.lastName = lastName;
+  }
 
-      boolean tak = true;
-      while(tak){
-        System.out.println("\nWybierz opcję:");
-        System.out.println("1 - Dodaj studenta");
-        System.out.println("2 - Wyświetl wszystkich studentów");
-        System.out.print("Twój wybór: ");
-        int choice = Integer.parseInt(scanner.nextLine());
+  public String getName() {return name;}
+  public String getLastName() {return lastName;}
+  public int getAge() {return age;}
 
-        switch (choice) {
-          case 1:
-            System.out.print("Podaj imię studenta: ");
-            String name = scanner.nextLine();
+  public String toString() {
+    return name + " " + lastName + " " + Integer.toString(age);
+  }
 
-            System.out.print("Podaj nazwisko studenta: ");
-            String lastname = scanner.nextLine();
-
-            int age = 0;
-            boolean validAge = false;
-            while (!validAge) {
-              System.out.print("Podaj wiek studenta: ");
-              try {
-                age = Integer.parseInt(scanner.nextLine());
-                validAge = true;
-              } catch (NumberFormatException e) {
-                System.out.println("Wiek musi być liczbą. Spróbuj ponownie.");
-              }
-            }
-
-            s.addStudent(new Student(name, lastname, age));
-            System.out.println(" Dodano studenta.");
-            break;
-
-          case 2:
-            var students = s.getStudents();
-            System.out.println("Lista studentów:");
-            for (Student current : students) {
-              System.out.println(current.toString());
-            }
-            break;
-        }
-      }
-      scanner.close();
-
-
-    } catch (IOException e) {
-
+  public static Student parse(String str) {
+    String[] data = str.split(" ");
+    if (data.length != 3) {
+      return new Student("Parse Error", "Parse Error", -1);
     }
+    return new Student(data[0], data[1], Integer.parseInt(data[2]));
   }
 }
