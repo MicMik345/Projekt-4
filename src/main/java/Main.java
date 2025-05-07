@@ -53,7 +53,7 @@ class Main {
 
           case 2:
             var students = s.getStudents();
-            System.out.println("📋 Lista studentów:");
+            System.out.println("Lista studentów:");
             for (Student current : students) {
               System.out.println(current.toString());
             }
