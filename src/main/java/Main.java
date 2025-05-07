@@ -15,6 +15,7 @@ class Main {
         System.out.println("2 - Wyświetl wszystkich studentów");
         System.out.println("3 - Wyszukaj studenta po imieniu");
         System.out.println("4 - Usuń studenta");
+        System.out.println("5 - Zaktualizuj dane studenta");
         System.out.print("Twój wybór: ");
         int choice = Integer.parseInt(scanner.nextLine());
 
@@ -79,6 +80,31 @@ class Main {
             try {
               s.deleteStudent(deleteName, deleteLastName);
               System.out.println("Student został usunięty.");
+            } catch (IOException e) {
+              System.out.println(e.getMessage());
+            }
+            break;
+          case 5:
+            System.out.print("Podaj imię studenta: ");
+            String updateName = scanner.nextLine();
+            System.out.print("Podaj nazwisko studenta: ");
+            String updateLastName = scanner.nextLine();
+            
+            int newAge = 0;
+            boolean validUpdateAge = false;
+            while (!validUpdateAge) {
+              System.out.print("Podaj nowy wiek studenta: ");
+              try {
+                newAge = Integer.parseInt(scanner.nextLine());
+                validUpdateAge = true;
+              } catch (NumberFormatException e) {
+                System.out.println("Wiek musi być liczbą. Spróbuj ponownie.");
+              }
+            }
+            
+            try {
+              s.updateStudentAge(updateName, updateLastName, newAge);
+              System.out.println("Dane studenta zostały zaktualizowane.");
             } catch (IOException e) {
               System.out.println(e.getMessage());
             }
