@@ -29,8 +29,14 @@ public class Service {
     reader.close();
     return ret;
   }
+  
 
-  public Student findStudentByName(String name) {
-    return null;
-  }
+public Student findStudentByName(String name) throws IOException {
+    for (Student student : getStudents()) {
+        if (student.getName().equalsIgnoreCase(name)) {
+            return student;
+        }
+    }
+    return null; 
+}
 }
