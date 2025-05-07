@@ -1,3 +1,4 @@
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -26,21 +27,28 @@ class Main {
             int age = 0;
             boolean validAge = false;
             while (!validAge) {
-            System.out.print("Podaj wiek studenta: ");
-
-
-            
+              System.out.print("Podaj wiek studenta: ");
               try {
                 age = Integer.parseInt(scanner.nextLine());
                 validAge = true;
               } catch (NumberFormatException e) {
                 System.out.println("Wiek musi być liczbą. Spróbuj ponownie.");
-                
               }
             }
 
-            s.addStudent(new Student(name, lastname, age));
-            System.out.println(" Dodano studenta.");
+            String birthDate;
+            boolean validDate = false;
+            do {
+              System.out.print("Podaj datę urodzenia (DD-MM-RRRR): ");
+              birthDate = scanner.nextLine();
+              validDate = Student.isValidDate(birthDate);
+              if (!validDate) {
+                System.out.println("Nieprawidłowa data. Format: DD-MM-RRRR");
+              }
+            } while (!validDate);
+
+            s.addStudent(new Student(name, lastname, age, birthDate));
+            System.out.println("Dodano studenta.");
             break;
 
           case 2:
@@ -53,10 +61,8 @@ class Main {
         }
       }
       scanner.close();
-
-
     } catch (IOException e) {
-
+      System.out.println("Błąd: " + e.getMessage());
     }
   }
 }
